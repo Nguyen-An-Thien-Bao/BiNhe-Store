@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Poppins', sans-serif;
+        font-size: 62.5%;
+        scroll-behavior: smooth;
+    }
+}
+
+.expendable {
+    min-height: 0;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 200ms;
+}
+
+.open {
+    grid-template-rows: 1fr;
+}
+
+@layer components {
+    .navHeightAnimation {
+        @apply grid grid-rows-[0] overflow-hidden transition-all;
+    }
+}

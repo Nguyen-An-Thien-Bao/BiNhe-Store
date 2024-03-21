@@ -36,9 +36,8 @@ function App() {
                             <Route path={routess.collection.path.goods} element={<GoodsPage />}></Route>
 
                             <Route path={shopChildRoute.all} element={<ShopPage />}></Route>
-                            <Route path={shopChildRoute.top} element={<TopsPage />}></Route>
 
-                            <Route path={shopChildRoute.top}>
+                            <Route path={shopChildRoute.top} element={<TopsPage />}>
                                 <Route path={topChildRoute.camisole} element={<CamisolesPage />}></Route>
                                 <Route path={topChildRoute.shirts} element={<ShirtPage />}></Route>
                             </Route>
