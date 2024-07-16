@@ -7,7 +7,8 @@ import Footer from '../../components/Footer';
 
 function ShopPage() {
     const pageTitle = 'Product';
-    const dataCate = 'dresses_Jumpsuits';
+    // const dataCate = 'dresses_Jumpsuits';
+    const dataCate = 'collections';
     const itemCategory = '';
     useEffect(() => {
         generalFunction('Shop');

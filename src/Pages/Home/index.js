@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import generalFunction from '../../Utils/generalFunction';
 import Hero from '../../components/Hero';
 import Banner from '../../components/Banner';
-import Slider from '../../components/Slider';
+import Carousel from '../../components/Carousel';
 import Footer from '../../components/Footer';
+import Slider from '../../components/Slider';
 
 function HomePage() {
     useEffect(() => {
@@ -13,6 +14,7 @@ function HomePage() {
         <div>
             <Hero />
             <Banner />
+            <Carousel />
             <Slider />
             <Footer />
         </div>

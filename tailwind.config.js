@@ -2,6 +2,9 @@
 module.exports = {
     content: ['./src/**/*.{html,js}'],
     theme: {
+        boxShadow: {
+            arrowController: '0 4px 20px 0 rgba(0,0,0,0.16), 0 0 3px 0 rgba(0,0,0,0.12)',
+        },
         extend: {
             colors: {
                 'primary-Color': '#F8EDEB',

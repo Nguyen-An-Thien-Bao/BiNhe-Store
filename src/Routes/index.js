@@ -3,8 +3,6 @@ import { routesPath } from '../configs/routes';
 
 const AboutPage = React.lazy(() => import('../Pages/About'));
 const ContactPage = React.lazy(() => import('../Pages/ContactPage'));
-const WomenPage = React.lazy(() => import('../Pages/WomenPage'));
-const MenPage = React.lazy(() => import('../Pages/MenPage'));
 const ShopPage = React.lazy(() => import('../Pages/ShopPage'));
 const HomePage = React.lazy(() => import('../Pages/Home'));
 const ProductPage = React.lazy(() => import('../Pages/ProductPage'));
@@ -26,14 +24,6 @@ export const publicRoutes = [
     {
         path: routesPath.homePath,
         component: HomePage,
-    },
-    {
-        path: routesPath.womenPath,
-        component: WomenPage,
-    },
-    {
-        path: routesPath.menPath,
-        component: MenPage,
     },
     {
         path: routesPath.aboutPath,
@@ -64,6 +54,11 @@ export const publicRoutes = [
 
 export const routess = {
     home: '/',
+    account: {
+        url: '/account',
+        login: 'login',
+        register: 'register',
+    },
     collection: {
         url: 'collection/',
         path: {

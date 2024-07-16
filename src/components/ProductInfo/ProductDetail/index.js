@@ -1,4 +1,4 @@
-import { VND } from '../../../Utils/currencyFormat';
+import formatCurrency from '../../../Utils/currencyFormat';
 import Button from '../../Button';
 import ProductForm from './ProductForm';
 
@@ -10,7 +10,7 @@ function ProductDetail({ productData = {} }) {
                 <span className="text-[12px]">SKU: {productData.id}</span>
             </div>
             <div className="border-b-[1px] border-[#ccc] py-4 text-[18px] font-semibold">
-                <span>{VND.format(productData.price)}</span>
+                <span>{formatCurrency(productData.price)}</span>
             </div>
 
             <ProductForm productData={productData} />

@@ -1,11 +1,16 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { db } from '../../../configs/firestore';
 import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import CollectionPagination from '../Pagination';
 
 const CollectionItem = lazy(() => import('../CollectionItem'));
 
-function CollectionBody({ collectionTitle = '', dataCategory = '', itemCategory = '' }) {
+function CollectionBody({
+    collectionTitle = '',
+    dataCategory = '',
+    itemCategory = '',
+    collectionField = 'categoryName',
+}) {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPageItem, setTotalPageItem] = useState(8);
@@ -18,11 +23,10 @@ function CollectionBody({ collectionTitle = '', dataCategory = '', itemCategory 
     const getData = async () => {
         let q;
         itemCategory !== ''
-            ? (q = query(collection(db, dataCategory), where('category', '==', itemCategory)))
+            ? (q = query(collection(db, dataCategory), where(collectionField, '==', itemCategory)))
             : (q = collection(db, dataCategory));
         const querySnapshot = await getDocs(q);
 
-        // const querySnapshot = await getDocs(collection(db, dataCategory));
         console.log(querySnapshot.docs);
         const dataResult = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         setData(dataResult);
@@ -48,19 +52,33 @@ function CollectionBody({ collectionTitle = '', dataCategory = '', itemCategory 
                     </select>
                 </div>
             </div>
-            <div className="grid grid-cols-2 px-[3px] lg:mt-4 lg:grid-cols-4 lg:px-10">
-                {currentPost.map((ele, idx) => (
-                    <Suspense key={idx} fallback={<h3>loading</h3>}>
-                        <CollectionItem item={ele} />
-                    </Suspense>
-                ))}
-            </div>
-            <CollectionPagination
-                collection_Ref={collectionRef.current}
-                setCurrentPage={setCurrentPage}
-                totalPageItem={totalPageItem}
-                totalItem={data.length}
-            />
+            {data.length === 0 ? (
+                <p className="ml-4 text-2xl">Chưa có sản phẩm nào trong danh mục này.</p>
+            ) : (
+                <>
+                    <div className="grid grid-cols-2 px-[3px] lg:mt-4 lg:grid-cols-4 lg:px-10">
+                        {currentPost.map((ele, idx) => (
+                            <Suspense
+                                key={idx}
+                                fallback={
+                                    <div className="h-full w-full bg-slate-400">
+                                        <span className="animate-pulse">loading</span>
+                                    </div>
+                                }
+                            >
+                                <CollectionItem item={ele} />
+                            </Suspense>
+                        ))}
+                    </div>
+                    <CollectionPagination
+                        collection_Ref={collectionRef.current}
+                        setCurrentPage={setCurrentPage}
+                        totalPageItem={totalPageItem}
+                        totalItem={data.length}
+                        currentPage={currentPage}
+                    />
+                </>
+            )}
         </div>
     );
 }

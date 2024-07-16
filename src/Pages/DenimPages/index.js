@@ -1,15 +1,22 @@
 import { useEffect } from 'react';
 import generalFunction from '../../Utils/generalFunction';
+import CollectionBody from '../../components/Collection/CollectionBody';
+import CollectionHeader from '../../components/Collection/CollectionHeader';
+import { denimImage } from '../../assets/collectionHeader';
+import Footer from '../../components/Footer';
 
 function DenimPage() {
+    const pageTitle = 'denim wear';
+    const dataCate = 'collections';
+    const itemCategory = 'denim';
     useEffect(() => {
-        generalFunction('Denim');
+        generalFunction('Demin Wear');
     });
     return (
-        <div className="h-[4000px] w-full bg-slate-200">
-            <div className="sticky top-0 h-[300px] bg-pink-200">
-                <h1 className="">Denim Page</h1>
-            </div>
+        <div>
+            <CollectionHeader Bg_image={denimImage} title={pageTitle} />
+            <CollectionBody collectionTitle={pageTitle} dataCategory={dataCate} itemCategory={itemCategory} />
+            <Footer />
         </div>
     );
 }

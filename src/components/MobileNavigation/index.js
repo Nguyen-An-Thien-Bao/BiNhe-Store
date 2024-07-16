@@ -1,13 +1,31 @@
 import Modal from '../Modal';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { CloseBtn } from '../../assets/icons';
 import mobileNavConfig from './mobileNavConfig';
 import { handleCloseMobileMenu } from '../../Utils/mobileNavFunction';
 
 import NavItem from './NavItem';
 import { navConfig } from './navConfig';
+import { useContext, useEffect, useState } from 'react';
+import { auth } from '../../configs/firestore';
+import { signOut } from 'firebase/auth';
+import AuthStateContext from '../../Context/AuthStateContext';
 
 function MobileNavigation() {
+    const navigate = useNavigate();
+    const authContextValue = useContext(AuthStateContext);
+    const [user] = authContextValue;
+
+    const handleLogOut = () => {
+        signOut(auth)
+            .then(() => {
+                navigate('/');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     return (
         <Modal
             id="mobileNav"
@@ -23,13 +41,26 @@ function MobileNavigation() {
                     <CloseBtn />
                 </button>
                 <div className="px-8 py-12">
-                    <NavLink
-                        className="border-0 bg-white text-xl leading-loose transition-opacity hover:opacity-50"
-                        to={'/'}
-                        onClick={() => handleCloseMobileMenu('mobile_Navbar_Modal', 'mobileNav', '-translate-x-full')}
-                    >
-                        lOG IN
-                    </NavLink>
+                    {user == null ? (
+                        <NavLink
+                            className="border-0 bg-white text-xl leading-loose transition-opacity hover:opacity-50"
+                            to={'/account/login'}
+                            onClick={() =>
+                                handleCloseMobileMenu('mobile_Navbar_Modal', 'mobileNav', '-translate-x-full')
+                            }
+                        >
+                            lOG IN
+                        </NavLink>
+                    ) : (
+                        <button
+                            onClick={() => {
+                                handleCloseMobileMenu('mobile_Navbar_Modal', 'mobileNav', '-translate-x-full');
+                                handleLogOut();
+                            }}
+                        >
+                            LOG OUT
+                        </button>
+                    )}
                 </div>
                 {navConfig.map((ele, idx) => (
                     <NavItem

@@ -7,7 +7,7 @@ import Footer from '../../components/Footer';
 
 function TrousersPage() {
     const pageTitle = 'trousers';
-    const dataCate = 'dresses_Jumpsuits';
+    const dataCate = 'collections';
     const itemCategory = 'trousers';
     useEffect(() => {
         generalFunction('Trousers');

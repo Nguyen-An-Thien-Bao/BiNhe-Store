@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import generalFunction from '../../Utils/generalFunction';
 import CollectionHeader from '../../components/Collection/CollectionHeader';
 import { orangeImage } from '../../assets/collectionHeader';
@@ -7,10 +7,10 @@ import Footer from '../../components/Footer';
 
 function DressesPage() {
     const pageTitle = 'Dresses & Jumpsuits';
-    const dataCate = 'dresses_Jumpsuits';
-    const itemCategory = 'dresses-jumpsuits';
+    const dataCate = 'collections';
+    const itemCategory = 'dresses';
     useEffect(() => {
-        generalFunction('Dresses');
+        generalFunction('Dresses & Jumpsuits');
     });
     return (
         <div>

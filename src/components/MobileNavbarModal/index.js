@@ -10,7 +10,7 @@ function MobileNavbar() {
                 className="cursor-pointer"
                 onClick={() => handleOpenMobileMenu('mobile_Navbar_Modal', 'mobileNav', '-translate-x-full')}
             >
-                <Button className="hidden border md:inline-block" size="sm" border>
+                <Button className="hidden rounded-[20px] border md:inline-block" size="sm" border>
                     shop
                 </Button>
                 <MenuHamburger className="md:hidden" />

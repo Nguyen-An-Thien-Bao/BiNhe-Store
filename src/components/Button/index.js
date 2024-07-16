@@ -1,4 +1,12 @@
-function Button({ children, className = '', size = '', border = false }) {
+function Button({
+    RightIcon = <></>,
+    LeftIcon = <></>,
+    children,
+    className = '',
+    size = '',
+    border = false,
+    onClick = () => {},
+}) {
     let sizeClass;
     switch (size) {
         case 'sm':
@@ -18,8 +26,10 @@ function Button({ children, className = '', size = '', border = false }) {
     }
 
     return (
-        <button className={`${className} ${sizeClass} border-black ${border ? 'border' : 'rounded-none'}`}>
+        <button className={`${className} ${sizeClass} border-black ${border ? 'border' : ''}`} onClick={onClick}>
+            {LeftIcon || <LeftIcon />}
             {children}
+            {RightIcon || <RightIcon />}
         </button>
     );
 }

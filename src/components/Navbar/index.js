@@ -1,15 +1,18 @@
 import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { HiUser, HiOutlineLogin } from 'react-icons/hi';
 
-// import navConfig from './navConfig';
-import regularLogo from '../../assets/logos/logo-regular.png';
-import retinaLogo from '../../assets/logos/logo-retina.png';
 import SearchBox from '../SearchBox';
 import MobileNavbar from '../MobileNavbarModal';
 
 import Cart from '../Cart';
 import Button from '../Button';
+import AuthStateContext from '../../Context/AuthStateContext';
 
 function Navbar() {
+    const authContextValue = useContext(AuthStateContext);
+    const [user] = authContextValue;
+
     return (
         <section className="sticky left-0 right-0 top-0 z-50 grid h-24 w-full grid-cols-3 items-center bg-white px-8 shadow-[0_0_3px_rgba(0,0,0,0.08)_inset] md:h-36 lg:h-40 lg:px-24">
             <div className="flex items-center">
@@ -19,12 +22,9 @@ function Navbar() {
                 </Button>
             </div>
             <NavLink to={'/'} className="mx-auto -translate-y-1/4">
-                <div className="h-[50px] w-[50px]">
+                <div className="h-12 w-12 md:h-16 md:w-16 lg:h-20 lg:w-20">
                     <svg viewBox="0 0 100 143.41987535931196">
-                        <defs id="SvgjsDefs3097"></defs>
                         <g
-                            id="SvgjsG3098"
-                            featurekey="nameFeature-0"
                             transform="matrix(2.879678637425496,0,0,2.879678637425496,-10.518888993125303,-5.625451625015186)"
                             fill="#111111"
                         >
@@ -40,9 +40,16 @@ function Navbar() {
             <div className="flex items-center justify-end">
                 <SearchBox />
                 <Cart />
-                <NavLink to={'/'} className="hidden text-xl lg:inline-block">
-                    LOG IN
-                </NavLink>
+                {user != null ? (
+                    <div className="flex h-12 w-12 items-center justify-center">
+                        <HiUser className="text-3xl" />
+                    </div>
+                ) : (
+                    <NavLink to={'/account/login'} className="text-xl">
+                        <span className="hidden lg:inline-block">LOG IN</span>
+                        <HiOutlineLogin className="text-4xl lg:hidden" />
+                    </NavLink>
+                )}
             </div>
         </section>
     );
