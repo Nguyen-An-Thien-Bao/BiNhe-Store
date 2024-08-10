@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import generalFunction from '../../Utils/generalFunction';
+import renameWebPage from '../../Utils/renameWebPage';
 import Hero from '../../components/Hero';
 import Banner from '../../components/Banner';
 import Carousel from '../../components/Carousel';
@@ -9,7 +9,7 @@ import CarouselV2 from '../../components/CarouselV2';
 
 function HomePage() {
     useEffect(() => {
-        generalFunction('Home');
+        renameWebPage('Home');
     });
     return (
         <div>

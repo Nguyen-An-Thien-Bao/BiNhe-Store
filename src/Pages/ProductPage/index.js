@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import generalFunction from '../../Utils/generalFunction';
+import renameWebPage from '../../Utils/renameWebPage';
 import Footer from '../../components/Footer';
 import ProductInfo from '../../components/ProductInfo';
 
 function ProductPage() {
     useEffect(() => {
-        generalFunction('Item');
+        renameWebPage('Product');
     });
     return (
         <div className="">

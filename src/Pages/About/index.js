@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import generalFunction from '../../Utils/generalFunction';
+import renameWebPage from '../../Utils/renameWebPage';
 
 function AboutPage() {
     useEffect(() => {
-        generalFunction('About');
+        renameWebPage('About');
     });
     return (
         <div className="h-[4000px] w-full bg-slate-200">

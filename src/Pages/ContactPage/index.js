@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import generalFunction from '../../Utils/generalFunction';
+import renameWebPage from '../../Utils/renameWebPage';
 
 function ContactPage() {
     useEffect(() => {
-        generalFunction('Contact');
+        renameWebPage('Contact');
     });
     return (
         <div>

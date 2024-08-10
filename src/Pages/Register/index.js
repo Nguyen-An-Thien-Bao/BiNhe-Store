@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import generalFunction from '../../Utils/generalFunction';
+import renameWebPage from '../../Utils/renameWebPage';
 import Footer from '../../components/Footer';
 import RegisterForm from '../../components/RegisterForm';
 
 function Register() {
     useEffect(() => {
-        generalFunction('Register');
+        renameWebPage('Register');
     });
 
     return (

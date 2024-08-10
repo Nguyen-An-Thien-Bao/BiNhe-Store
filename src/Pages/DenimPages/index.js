@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import generalFunction from '../../Utils/generalFunction';
+import renameWebPage from '../../Utils/renameWebPage';
 import CollectionBody from '../../components/Collection/CollectionBody';
 import CollectionHeader from '../../components/Collection/CollectionHeader';
 import { denimImage } from '../../assets/collectionHeader';
@@ -10,7 +10,7 @@ function DenimPage() {
     const dataCate = 'collections';
     const itemCategory = 'denim';
     useEffect(() => {
-        generalFunction('Demin Wear');
+        renameWebPage('Demin Wear');
     });
     return (
         <div>
