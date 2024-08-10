@@ -3,7 +3,7 @@ import Modal from '../Modal';
 import { CloseBtn } from '../../assets/icons';
 import { handleCloseMobileMenu, handleOpenMobileMenu } from '../../Utils/mobileNavFunction';
 import { useState, useEffect } from 'react';
-import { doc, getDoc, query, collection, where, getDocs } from 'firebase/firestore';
+import { query, collection, getDocs } from 'firebase/firestore';
 import { db } from '../../configs/firestore';
 
 function SearchBox() {

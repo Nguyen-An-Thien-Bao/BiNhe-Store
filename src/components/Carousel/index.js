@@ -28,12 +28,12 @@ function Carousel() {
     };
 
     return (
-        <div className="relative overflow-visible lg:h-screen">
+        <div className="relative overflow-visible">
             <div
                 ref={carouselContainer}
                 className="overflow-x-hidden scroll-smooth duration-1000 ease-in-out lg:h-full"
             >
-                <div ref={carousel} className="flex h-full w-[100%] snap-mandatory bg-slate-100">
+                <div ref={carousel} className="flex aspect-video w-[100%] snap-mandatory bg-slate-100">
                     <CarouselItem src={slideShow1} />
                     <CarouselItem src={slideShow2} />
                     <CarouselItem src={slideShow3} />

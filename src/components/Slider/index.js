@@ -10,7 +10,7 @@ function Slider() {
     const [data, setData] = useState([]);
 
     const getData = async () => {
-        let q = query(collection(db, 'dresses_Jumpsuits'), where('status', '==', 'low in stock'));
+        let q = query(collection(db, 'collections'), where('status', '==', 'low in stock'));
         const querySnapshot = await getDocs(q);
 
         const dataResult = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -24,7 +24,7 @@ function Slider() {
     return (
         <div className="m-[16px] overflow-hidden rounded-[8px] border border-[#ccc]">
             <SliderHead />
-            <SliderBody>
+            <SliderBody data={data.length}>
                 {data.map((product, idx) => (
                     <SliderItem data={product} key={idx} />
                 ))}

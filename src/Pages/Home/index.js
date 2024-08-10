@@ -5,6 +5,7 @@ import Banner from '../../components/Banner';
 import Carousel from '../../components/Carousel';
 import Footer from '../../components/Footer';
 import Slider from '../../components/Slider';
+import CarouselV2 from '../../components/CarouselV2';
 
 function HomePage() {
     useEffect(() => {
@@ -14,7 +15,7 @@ function HomePage() {
         <div>
             <Hero />
             <Banner />
-            <Carousel />
+            <CarouselV2 />
             <Slider />
             <Footer />
         </div>

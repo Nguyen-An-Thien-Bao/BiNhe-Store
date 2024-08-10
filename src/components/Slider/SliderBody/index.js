@@ -1,25 +1,25 @@
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 
-// import SliderItem from '../SliderItem';
 import { useRef, useState } from 'react';
 
-function SliderBody({ children }) {
+function SliderBody({ children, data }) {
     const sliderRef = useRef();
     const testRef = useRef();
     const [x, setX] = useState(0);
     const [isDelay, setDelay] = useState(false);
 
     const scroll = (direction = '') => {
-        // const slider = sliderRef.current;
-        // console.log(x, slider.scrollWidth);
         setDelay(true);
+
+        if (data * 216 < sliderRef.current.clientWidth) {
+            return;
+        }
         if (direction === 'right') {
             setX((prev) => (prev -= 216));
         } else {
             setX((prev) => (prev += 216));
         }
     };
-
     const handleScroll = async (direction = '') => {
         scroll(direction);
         setDelay(false);
@@ -31,9 +31,9 @@ function SliderBody({ children }) {
                 <div
                     style={{ transform: `translate3d(${x}px, 0px, 0px)` }}
                     ref={sliderRef}
-                    className={`pb-[24px] pl-[16px] pt-[16px] transition-transform`}
+                    className={`whitespace-nowrap pb-[24px] pl-[16px] pt-[16px] transition-transform`}
                 >
-                    <div className="items-start whitespace-nowrap">{children}</div>
+                    {children}
                 </div>
 
                 <button
