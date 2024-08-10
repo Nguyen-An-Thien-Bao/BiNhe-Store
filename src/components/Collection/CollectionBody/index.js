@@ -1,4 +1,4 @@
-import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../../configs/firestore';
 import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import CollectionPagination from '../Pagination';
@@ -15,10 +15,11 @@ function CollectionBody({
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPageItem, setTotalPageItem] = useState(8);
     const collectionRef = useRef();
+    console.log(data);
 
     const lastItem = currentPage * totalPageItem;
     const firstItem = lastItem - totalPageItem;
-    const currentPost = data.slice(firstItem, lastItem);
+    let currentPost = data.slice(firstItem, lastItem);
 
     const getData = async () => {
         let q;
@@ -57,18 +58,19 @@ function CollectionBody({
             ) : (
                 <>
                     <div className="grid grid-cols-2 px-[3px] lg:mt-4 lg:grid-cols-4 lg:px-10">
-                        {currentPost.map((ele, idx) => (
-                            <Suspense
-                                key={idx}
-                                fallback={
-                                    <div className="h-full w-full bg-slate-400">
-                                        <span className="animate-pulse">loading</span>
-                                    </div>
-                                }
-                            >
-                                <CollectionItem item={ele} />
-                            </Suspense>
-                        ))}
+                        {currentPost &&
+                            currentPost.map((ele, idx) => (
+                                <Suspense
+                                    key={idx}
+                                    fallback={
+                                        <div className="h-full w-full bg-slate-400">
+                                            <span className="animate-pulse">loading</span>
+                                        </div>
+                                    }
+                                >
+                                    <CollectionItem item={ele} />
+                                </Suspense>
+                            ))}
                     </div>
                     <CollectionPagination
                         collection_Ref={collectionRef.current}
