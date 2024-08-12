@@ -1,7 +1,6 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../../../configs/firestore';
-import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { Suspense, lazy, useRef, useState } from 'react';
 import CollectionPagination from '../Pagination';
+import { useFetch } from '../../../hooks';
 
 const CollectionItem = lazy(() => import('../CollectionItem'));
 
@@ -11,9 +10,16 @@ function CollectionBody({
     itemCategory = '',
     collectionField = 'categoryName',
 }) {
-    const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPageItem, setTotalPageItem] = useState(8);
+
+    const [data, loading] = useFetch({
+        collectionTitle,
+        dataCategory,
+        itemCategory,
+        collectionField,
+        currentPage,
+    });
     const collectionRef = useRef();
     console.log(data);
 
@@ -21,21 +27,9 @@ function CollectionBody({
     const firstItem = lastItem - totalPageItem;
     let currentPost = data.slice(firstItem, lastItem);
 
-    const getData = async () => {
-        let q;
-        itemCategory !== ''
-            ? (q = query(collection(db, dataCategory), where(collectionField, '==', itemCategory)))
-            : (q = collection(db, dataCategory));
-        const querySnapshot = await getDocs(q);
-
-        console.log(querySnapshot.docs);
-        const dataResult = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        setData(dataResult);
-    };
-
-    useEffect(() => {
-        getData();
-    }, [currentPage]);
+    if (loading) {
+        return <div>loading...</div>;
+    }
 
     return (
         <div ref={collectionRef} className="lg:px-10" id="collection_section">
